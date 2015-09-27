@@ -1,0 +1,204 @@
+﻿<Window x:Class="WoWPrivateServerLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWPrivateServerLauncher"
+        mc:Ignorable="d"
+        Title="World of Warcraft Launcher" Loaded="Window_Loaded" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="650" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Height="25">
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/topbar.png" />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1" Content="World Of Warcraft Launcher"  Foreground="White" />
+
+            <Button x:Name="BTN_MINIMIZE" Grid.Column="2" Height="auto" Width="28" Background="Transparent" BorderBrush="Transparent" Click="BTN_MINIMIZE_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
+                                        <ContentPresenter/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Button.IsPressed" Value="True">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <Image Margin="2">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value=".\Resources\MinimizeButton-NoHover.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value=".\Resources\MinimizeButton.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Button x:Name="BTN_CLOSE" Grid.Column="3" Height="auto" Width="28" Background="Transparent" BorderBrush="Transparent" Click="BTN_CLOSE_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
+                                        <ContentPresenter/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Button.IsPressed" Value="True">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <Image Margin="2">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value=".\Resources\ExitButton-NoHover.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value=".\Resources\ExitButton.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+        </Grid>
+
+        <Menu Grid.Row="1" Height="25" HorizontalAlignment="Stretch" Background="Black" >
+            <MenuItem Margin="1" Header="Options" x:Name="BTN_OPTIONS" Click="BTN_OPTIONS_Click" Foreground="White">
+                
+            </MenuItem>
+            <MenuItem Margin="1" Header="Server List" x:Name="BTN_SERVERLIST" Click="BTN_SERVERLIST_Click" Foreground="White">
+                
+            </MenuItem>
+            <MenuItem Margin="1" Header="Info" x:Name="BTN_INFO" Click="BTN_INFO_Click" Foreground="White">
+                
+            </MenuItem>
+            <MenuItem Margin="1" Header="Help" x:Name="BTN_HELP" Click="BTN_HELP_Click" Foreground="White">
+                
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="2">
+
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/LauncherOuter.png" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <WebBrowser x:Name="WEB_BROWSER" Margin="3,0,3,0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="GRID_PROGRESS" Grid.Row="1" Grid.Column="1">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="./Resources/dbar_setup.png" />
+                        </Grid.Background>
+                        <ProgressBar x:Name="PRG_DOWNLOAD" HorizontalAlignment="Stretch" Height="10" Margin="10,24,10,0" />
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="TXTDOWNLOADSPEED" Margin="5" Text="0 KB/s" Grid.Column="0" Foreground="White" />
+                        <TextBlock x:Name="TXTPERCENTAGE" Margin="5" Text="0%" Grid.Column="1" Foreground="White" />
+                        <TextBlock x:Name="TXTTORRENTSTATE" Margin="5" Text="..." Grid.Column="2" Foreground="White"/>
+                    </Grid>
+                </Grid>
+
+
+                <Button x:Name="BTN_PLAY" Click="BTN_PLAY_Click"  Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" Grid.Column="2" Width="145" Margin="15" Height="90">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
+                                            <ContentPresenter/>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="Button.IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value=".\Resources\Play-No-Hover.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value=".\Resources\Play-Hover.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Button>
+
+
+            </Grid>
+
+
+
+        </Grid>
+    </Grid>
+</Window>

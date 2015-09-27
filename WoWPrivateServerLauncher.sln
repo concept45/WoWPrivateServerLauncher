@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWPrivateServerLauncher", "WoWPrivateServerLauncher\WoWPrivateServerLauncher.csproj", "{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Stats|Any CPU = Stats|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Stats|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA29C18-268F-4E71-B5BF-57F7EE78D8AB}.Stats|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

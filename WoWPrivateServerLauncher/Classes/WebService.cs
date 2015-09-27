@@ -9,7 +9,6 @@ namespace WoWPrivateServerLauncher.Classes
 {
     public class WebService
     {
-
         public static ExpansionList GetExpansions()
         {
             using (WebClient client = new WebClient())

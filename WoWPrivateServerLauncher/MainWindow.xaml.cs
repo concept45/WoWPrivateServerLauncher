@@ -245,7 +245,7 @@ namespace WoWPrivateServerLauncher
                     //Console.WriteLine(sb.ToString());
                     //listener.ExportTo(Console.Out);
                     //}
-                    DownloaderWorker.ReportProgress(Convert.ToInt32(manager.Progress),manager.State.ToString());
+                    DownloaderWorker.ReportProgress(Convert.ToInt32(manager.Progress), manager.State.ToString());
                     System.Threading.Thread.Sleep(500);
                 }
             }
@@ -347,7 +347,11 @@ namespace WoWPrivateServerLauncher
 
         private void BTN_SERVERLIST_Click(object sender, RoutedEventArgs e)
         {
-
+            ServerList List = new ServerList()
+            {
+                Owner = this,
+            };
+            List.ShowDialog();
         }
     }
 }

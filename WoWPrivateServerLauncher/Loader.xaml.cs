@@ -38,9 +38,9 @@ namespace WoWPrivateServerLauncher
         private void LoadWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try {
+                this.Hide();
                 MainWindow Main = new MainWindow();
                 Main.ShowDialog();
-                this.Close();
             }
             catch(Exception ex)
             {

@@ -4,105 +4,109 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WoWPrivateServerLauncher"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="ServerList" Height="500" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
-    <Grid Background="Black">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.Background>
-                <ImageBrush ImageSource="./Resources/topbar.png" />
-            </Grid.Background>
+    <xctk:BusyIndicator x:Name="BUSY_INDICATOR">
+        <Grid Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/topbar.png" />
+                </Grid.Background>
 
-            <Label Grid.Column="1" Content="Server List"  Foreground="White" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-           
-            <Button x:Name="BTN_CLOSE" Grid.Column="3" Height="auto" Width="28" Background="Transparent" BorderBrush="Transparent" Click="BTN_CLOSE_Click">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Name="border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
-                                        <ContentPresenter/>
-                                    </Border>
+                <Label Grid.Column="1" Content="Server List"  Foreground="White" />
 
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="Button.IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-                <Image Margin="2">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value=".\Resources\ExitButton-NoHover.png"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Source" Value=".\Resources\ExitButton.png"/>
-                                </Trigger>
-                            </Style.Triggers>
+
+                <Button x:Name="BTN_CLOSE" Grid.Column="3" Height="auto" Width="28" Background="Transparent" BorderBrush="Transparent" Click="BTN_CLOSE_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
+                                            <ContentPresenter/>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="Button.IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
-        </Grid>
-        
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <Label Foreground="White" Grid.Column="0" FontFamily="Segoe UI Light" FontSize="13.667" Content="Expansion: " Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <ComboBox Grid.Column="1" x:Name="CMB_EXPANSIONS" Width="150" VerticalAlignment="Center" Height="25" SelectedValuePath="name">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Blue" BorderThickness="0 0 0 1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding name}" FontFamily="Segoe UI Light" FontSize="13.667" Grid.Row="0" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                                <TextBlock FontFamily="Segoe UI Light" FontSize="13.667" Text="{Binding AvailableVersions, StringFormat=Available Versions: {0}}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Label Foreground="White" FontFamily="Segoe UI Light" FontSize="13.667" Grid.Column="2" Content="Version: " Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <ComboBox Grid.Column="3" FontFamily="Segoe UI Light" FontSize="13.667" x:Name="CMB_VERSIONS" Width="150" VerticalAlignment="Center" Height="25" IsEnabled="False">
-                
-            </ComboBox>
-        </Grid>
+                    </Button.Style>
+                    <Image Margin="2">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value=".\Resources\ExitButton-NoHover.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value=".\Resources\ExitButton.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Button>
+            </Grid>
 
-        <ListView Grid.Row="2">
-            <ListView.View>
-                <GridView AllowsColumnReorder="true" >
-                    <GridViewColumn Header="Server Name" Width="80"/>
-                    <GridViewColumn Header="Rating" Width="80"/>
-                    <GridViewColumn Header="Ping" Width="80"/>
-                    <GridViewColumn Header="Version" Width="80"/>
-                    <GridViewColumn Header="Realmlist" Width="80"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Foreground="White" Grid.Column="0" FontFamily="Segoe UI Light" FontSize="13.667" Content="Expansion: " Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <ComboBox Grid.Column="1" x:Name="CMB_EXPANSIONS" Width="150" VerticalAlignment="Center" Height="25" SelectedValuePath="name" SelectionChanged="CMB_EXPANSIONS_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Blue" BorderThickness="0 0 0 1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding name}" FontFamily="Segoe UI Light" FontSize="13.667" Grid.Row="0" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                    <TextBlock FontFamily="Segoe UI Light" FontSize="13.667" Text="{Binding AvailableVersions, StringFormat=Available Versions: {0}}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Foreground="White" FontFamily="Segoe UI Light" FontSize="13.667" Grid.Column="2" Content="Version: " Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <ComboBox Grid.Column="3" FontFamily="Segoe UI Light" FontSize="13.667" x:Name="CMB_VERSIONS" Width="150" VerticalAlignment="Center" Height="25" IsEnabled="False">
+
+                </ComboBox>
+            </Grid>
+
+            <ListView Grid.Row="2">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" >
+                        <GridViewColumn Header="Server Name" Width="80"/>
+                        <GridViewColumn Header="Rating" Width="80"/>
+                        <GridViewColumn Header="Ping" Width="80"/>
+                        <GridViewColumn Header="Version" Width="80"/>
+                        <GridViewColumn Header="Realmlist" Width="80"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </xctk:BusyIndicator>
 </Window>

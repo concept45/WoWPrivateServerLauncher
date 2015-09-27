@@ -96,7 +96,7 @@
     </Compile>
     <Compile Include="Classes\Data.cs" />
     <Compile Include="Classes\VersionList.cs" />
-    <Compile Include="Classes\Version.cs" />
+    <Compile Include="Classes\ServerVersion.cs" />
     <Compile Include="Classes\WebService.cs" />
     <Compile Include="Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>

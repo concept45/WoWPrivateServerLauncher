@@ -7,6 +7,6 @@ namespace WoWPrivateServerLauncher.Classes
 {
     public class VersionList
     {
-        public List<Version> Versions { get; set; }
+        public List<ServerVersion> Versions { get; set; }
     }
 }

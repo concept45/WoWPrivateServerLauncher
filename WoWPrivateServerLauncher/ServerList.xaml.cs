@@ -39,11 +39,23 @@ namespace WoWPrivateServerLauncher
         {
             try
             {
+                e.Result = null;
 
+                if (e.Argument == null)
+                    return;
+
+                Expansion SelectedExpansion = (Expansion)e.Argument;
+
+                if (SelectedExpansion == null)
+                    return;
+
+                List<ServerVersion> VersionsForThisExpansion = (from p in Data.VersionsAvailable.Versions where p.expansion == SelectedExpansion.name select p).OrderBy(p => p.version).ToList();
+
+                e.Result = VersionsForThisExpansion;
             }
             catch(Exception ex)
             {
-
+                e.Result = null;
             }
         }
 
@@ -51,11 +63,36 @@ namespace WoWPrivateServerLauncher
         {
             try
             {
+                CMB_VERSIONS.ItemsSource = null;
+                if (e.Result == null)
+                {
+                    CMB_VERSIONS.IsEnabled = false;
+                    BUSY_INDICATOR.IsBusy = false;
+                    return;
+                }
 
+                List<ServerVersion> Versions = (List<ServerVersion>)e.Result;
+
+                if (Versions == null || Versions.Count() == 0)
+                {
+                    CMB_VERSIONS.IsEnabled = false;
+                    BUSY_INDICATOR.IsBusy = false;
+                    return;
+                }
+
+                CMB_VERSIONS.ItemsSource = null;
+                CMB_VERSIONS.ItemsSource = Versions;
+
+                CMB_VERSIONS.SelectedItem = (from p in Versions select p).FirstOrDefault();
+
+                CMB_VERSIONS.UpdateLayout();
+                CMB_VERSIONS.IsEnabled = true;
+
+                BUSY_INDICATOR.IsBusy = false;
             }
             catch(Exception ex)
             {
-
+                BUSY_INDICATOR.IsBusy = false;
             }
         }
 
@@ -81,6 +118,31 @@ namespace WoWPrivateServerLauncher
         private void BTN_CLOSE_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void CMB_EXPANSIONS_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (CMB_EXPANSIONS.SelectedIndex == -1)
+                    return;
+
+                if (CMB_EXPANSIONS.SelectedItem == null)
+                    return;
+
+                Expansion SelectedExpansion = (Expansion)CMB_EXPANSIONS.SelectedItem;
+
+                if (SelectedExpansion == null)
+                    return;
+
+                BUSY_INDICATOR.BusyContent = "Loading...";
+                BUSY_INDICATOR.IsBusy = true;
+                LoadVersionsWorker.RunWorkerAsync(SelectedExpansion);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

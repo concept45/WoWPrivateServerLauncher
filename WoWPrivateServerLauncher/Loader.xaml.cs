@@ -56,9 +56,13 @@ namespace WoWPrivateServerLauncher
 
                 Data.VersionsAvailable = WebService.GetVersions();
 
-                LoadWorker.ReportProgress(50, "Loading Expansions...");
+                LoadWorker.ReportProgress(35, "Loading Expansions...");
 
                 Data.AvailableExpansions = WebService.GetExpansions();
+
+                LoadWorker.ReportProgress(75, "Loading Servers...");
+
+                Data.AvailableServers = WebService.GetServers();
 
                 LoadWorker.ReportProgress(100, "Done.");
             }

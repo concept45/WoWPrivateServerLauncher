@@ -79,6 +79,8 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Expansion.cs" />
     <Compile Include="Classes\ExpansionList.cs" />
+    <Compile Include="Classes\Server_List.cs" />
+    <Compile Include="Classes\Server.cs" />
     <Compile Include="ServerList.xaml.cs">
       <DependentUpon>ServerList.xaml</DependentUpon>
     </Compile>

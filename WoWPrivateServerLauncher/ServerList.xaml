@@ -91,8 +91,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Label Foreground="White" FontFamily="Segoe UI Light" FontSize="13.667" Grid.Column="2" Content="Version: " Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <ComboBox Grid.Column="3" FontFamily="Segoe UI Light" FontSize="13.667" x:Name="CMB_VERSIONS" Width="150" VerticalAlignment="Center" Height="25" IsEnabled="False">
-
+                <ComboBox Grid.Column="3" FontFamily="Segoe UI Light" FontSize="13.667" DisplayMemberPath="version" x:Name="CMB_VERSIONS" Width="150" VerticalAlignment="Center" Height="25" IsEnabled="False">
                 </ComboBox>
             </Grid>
 

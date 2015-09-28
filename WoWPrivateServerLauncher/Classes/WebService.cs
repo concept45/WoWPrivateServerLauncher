@@ -24,5 +24,13 @@ namespace WoWPrivateServerLauncher.Classes
                 return JsonConvert.DeserializeObject<VersionList>(client.DownloadString("http://wowprivatelauncher.ddns.net/GetVersions.php"));
             }
         }
+
+        public static Server_List GetServers()
+        {
+            using (WebClient client = new WebClient())
+            {
+                return JsonConvert.DeserializeObject<Server_List>(client.DownloadString("http://wowprivatelauncher.ddns.net/GetServers.php"));
+            }
+        }
     }
 }

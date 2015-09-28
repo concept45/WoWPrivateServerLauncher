@@ -9,5 +9,6 @@ namespace WoWPrivateServerLauncher.Classes
     {
         public static VersionList VersionsAvailable { get; set; }
         public static ExpansionList AvailableExpansions { get; set; }
+        public static Server_List AvailableServers { get; set; }
     }
 }
